@@ -1,34 +1,63 @@
-﻿function reloadImage(img) {
-    let baseUrl = "";
-    let arr = img?.src?.split("/n/u/l/l/");
-    if (arr?.length > 0) {
-        baseUrl = arr[arr?.length - 1];
-        if (baseUrl?.length > 0) {
-            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
-            let arr = ['','2','3','4'];
-            for (let index = 0; index < arr?.length; index++) {
-                let host = arr[index];
-                let checkURl = "https://null-library"+host+".github.io/n/u/l/l/"+baseUrl;
-                try {
-                    request?.open('GET', checkURl, false);
-                    request?.send(); 
-                    if (request.status === 200) {
-                        let url = new URL(checkURl);
-                        url.searchParams.set('reload', 'true');
-                        img.src = url.toString();
-                        break;
-    
-                    }
-                } catch (error) {          
-                    console.log(error);
-                    
-                } 
-                
-            }
-        }
-    }    
-    img.onerror = null;
+﻿let cachedHost = null;
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("img").forEach(img => {
 
+        img.addEventListener("error", function () {
+            reloadImage(this);
+        });
+
+        // 🔥 Nếu ảnh đã lỗi trước đó
+        if (img.complete && img.naturalWidth === 0) {
+            reloadImage(img);
+        }
+
+    });
+});
+function preloadImage(url) {
+    return new Promise((resolve, reject) => {
+        const testImg = new Image();
+        testImg.onload = () => resolve(url);
+        testImg.onerror = reject;
+        testImg.src = url;
+    });
+}
+
+async function reloadImage(img) {
+    if (!img?.src) return;
+
+    const parts = img.src.split("/n/u/l/l/");
+    if (parts.length < 2) return;
+
+    const baseUrl = parts.pop();
+    if (!baseUrl) return;
+
+    const hosts = ['1', '2', '3', '4'];
+
+    // 🔥 Nếu đã có host tốt → dùng luôn
+    if (cachedHost) {
+        img.src = `https://null-lnovel${cachedHost}.github.io/n/u/l/l/${baseUrl}?reload=${Date.now()}`;
+        img.onerror = null;
+        return;
+    }
+
+    // 🚀 Check song song bằng preload
+    const checks = hosts.map(host => {
+        const url = `https://null-lnovel${host}.github.io/n/u/l/l/${baseUrl}`;
+        return preloadImage(url).then(() => host);
+    });
+
+    try {
+        const goodHost = await Promise.any(checks);
+
+        cachedHost = goodHost; // cache lại
+
+        img.src = `https://null-lnovel${goodHost}.github.io/n/u/l/l/${baseUrl}?reload=${Date.now()}`;
+
+    } catch {
+        console.log("All GitHub Pages hosts failed");
+    }
+
+    img.onerror = null;
 }
 
 
