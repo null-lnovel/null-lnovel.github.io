@@ -1,0 +1,167 @@
+
+@font-face {
+    font-family: NewRocker;
+    src: url(../assets/fonts/NewRocker-Regular.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: UTM-Androgyne;
+    src: url(../assets/fonts/UTM-Androgyne.ttf) format("opentype");
+  }
+
+
+/*---------------------------------HTML CSS----------------------------------------*/
+span { 
+    -moz-user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+.a {
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #00ff5b;
+}
+
+/*--------------------------------main----------------------------------*/
+body {
+    
+    background: #131313;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* text-css */
+.null-h1{
+    margin: 15px 0px 15px 0px !important;
+    color: #fff;    
+    text-align: center;
+    font-family: UTM-Androgyne;
+    font-size: 3rem;
+}
+.null-h2{
+    margin: 5px 0px 5px 0px !important;
+    color: #fff;    
+    text-align: center;
+    font-family: UTM-Androgyne;
+    font-size: 1.75rem;
+}
+.null-h3{
+    margin: 5px 0px 5px 0px !important;
+    color: #fff;    
+    text-align: center;
+    font-family: UTM-Androgyne;
+    font-size: 1.25rem;
+    font-style: italic;
+}
+.null-p{
+    text-indent: 25px !important;
+    margin: 7px 0 7px 0 !important;
+    color: #fff;
+    font-family: UTM-Androgyne;
+    font-size: 1.1rem;
+}
+.null-page{
+    background-color: black !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.null-img{
+    margin: 1rem 0 1rem 0 !important;
+    max-width: 100% !important;
+    max-height: calc(100vh - 20px);
+}
+.null-img-border{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* -----------------------------------------------HTML CSS -----------------------------------------------*/
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    border-radius: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #414141;
+    border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1c1;
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #c1c1c1c1;
+    border-radius: 2px;
+}
+
+/*p*/
+p {
+    margin: 0;
+}
+
+
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container-sm, .container {
+    max-width: 560px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md, .container-sm, .container {
+    max-width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg, .container-md, .container-sm, .container {
+    max-width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1200px;
+  }
+
+}
